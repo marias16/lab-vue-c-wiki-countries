@@ -1,15 +1,32 @@
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, toRefs} from 'vue'
+import { RouterLink } from "vue-router";
+import countriesData from '/public/countries.json'
 
-defineProps({
-    border: {
-        type: String,
-    }
+const props = defineProps({
+    border: String,
+
 })
+
+const { border } = toRefs(props);
+
+const countries = countriesData.map(country => {
+    const {alpha3Code, name} = country;
+    return {
+        name,
+        alpha3Code
+    }
+});
+
+
+const countryElement = countries.find((country) => country.alpha3Code === border.value);
+const countryName = countryElement.name.common
+
+
 </script>
 
 <template>
-    <li><routerlink :to="`/list/`+ border">{{ border }}</routerlink></li> //poner el common name
+    <li><RouterLink :to="`/list/`+ border">{{ countryName }}</routerlink></li> 
 </template>
 
 <style>

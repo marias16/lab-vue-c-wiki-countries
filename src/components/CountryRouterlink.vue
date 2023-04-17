@@ -1,11 +1,12 @@
 <script setup>
 import { defineProps } from 'vue'
+import { RouterLink} from "vue-router";
 
 defineProps({
-  alpha3Code: {
+  alphathree: {
     type: String,
   },
-  alpha2Code: {
+  alphatwo: {
     type: String,
   },
   name: {
@@ -16,10 +17,10 @@ defineProps({
 </script>
 
 <template>
-    <routerlink class="list-group-item list-group-item-action" :to="`/list/` + alpha3Code">
-        <img :src="`https://flagpedia.net/data/flags/icon/72x54/` + alpha2Code `.png`" />
+    <RouterLink class="list-group-item list-group-item-action" :to="`/list/${alphathree}`">
+        <img :src="`https://flagpedia.net/data/flags/icon/72x54/${alphatwo}.png`" />
         <p>{{ name }}</p>
-    </routerlink>
+    </RouterLink>
 </template>
 
 <style scoped>
